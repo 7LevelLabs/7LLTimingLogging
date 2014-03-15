@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <context:property-placeholder location="classpath:test.runtime.properties"/>
+
+    <!-- Result -->
+    <bean id="dataSourceResult"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="${db.access.url}"/>
+        <property name="username" value="${db.access.username}"/>
+        <property name="password" value="${db.access.password}"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceResult"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.use_sql_comments">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+            </props>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>ua.ll7.slot7.timing.model.PingLogEntry</value>
+                <value>ua.ll7.slot7.timing.model.PingBatchLogEntry</value>
+            </list>
+        </property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="ua.ll7.slot7.timing.service"/>
+
+    <task:annotation-driven executor="taskExecutor" scheduler="scheduler"/>
+
+    <bean id="taskExecutor"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5"/>
+        <property name="maxPoolSize" value="10"/>
+        <property name="WaitForTasksToCompleteOnShutdown" value="true"/>
+    </bean>
+
+    <bean id="pingBatchLogEntryDAO" class="ua.ll7.slot7.timing.dao.impl.PingBatchLogEntryDAOImpl"/>
+
+    <bean id="pingBatchLogEntryWriterService"
+          class="ua.ll7.slot7.timing.service.impl.PingBatchLogEntryWriterService">
+        <property name="pingBatchesAmountThreshold" value="50"/>
+    </bean>
+
+    <task:scheduler id="scheduler" pool-size="20"/>
+
+    <task:scheduled-tasks scheduler="scheduler">
+        <task:scheduled ref="pingBatchLogEntryWriterService" method="pingBatchesCheckToStore" fixed-delay="3000"/>
+    </task:scheduled-tasks>
+
+</beans>
