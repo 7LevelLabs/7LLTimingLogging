@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * //TODO test it!
+ *
  * Pings collector: only-one-way-ticket style<br/>
  * - Create batch ({@link #PingsCollector(String)} or {@link #PingsCollector(String, String)}),
  * - Collect pings ({@link #ping()}, {@link #ping(String)}, {@link #ping(String, String)})
