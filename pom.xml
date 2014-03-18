@@ -10,6 +10,7 @@
     <modules>
         <module>timing</module>
         <module>logging</module>
+        <module>checks</module>
     </modules>
 
     <packaging>pom</packaging>
