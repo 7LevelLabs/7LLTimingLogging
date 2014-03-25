@@ -1,9 +1,10 @@
 package ua.ll7.slot7.timing.model;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
+import ua.ll7.slot7.checks.notnull.annotation.NotNull;
+import ua.ll7.slot7.checks.stringsnotempty.annotation.StringsNotEmpty;
 
 import javax.persistence.*;
 
@@ -62,13 +63,9 @@ public class PingLogEntry {
 	 * @param pingCustomID Ping short string id
 	 * @throws java.lang.IllegalArgumentException if the pingBatchLogEntry or pingCustomID parameters are null or empty
 	 */
-	public PingLogEntry(PingBatchLogEntry pingBatchLogEntry, long pingMillis, String pingCustomID) {
-		if (pingBatchLogEntry == null) {
-			throw new IllegalArgumentException("Ping batch is null or empty.");
-		}
-		if (StringUtils.isBlank(pingCustomID)) {
-			throw new IllegalArgumentException("Ping customID is null or empty.");
-		}
+	@NotNull
+	@StringsNotEmpty
+	public PingLogEntry(final PingBatchLogEntry pingBatchLogEntry, long pingMillis, final String pingCustomID) {
 		this.pingBatchLogEntry = pingBatchLogEntry;
 		this.pingMillis = pingMillis;
 		this.pingCustomID = pingCustomID;
