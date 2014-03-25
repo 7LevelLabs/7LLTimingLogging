@@ -3,8 +3,7 @@ package ua.ll7.slot7.timing.model;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
-import ua.ll7.slot7.checks.notnull.annotation.NotNull;
-import ua.ll7.slot7.checks.stringsnotempty.annotation.StringsNotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 
@@ -39,6 +38,7 @@ public class PingLogEntry {
 	 */
 	@Column
 	@Index(name = "pingCustomID")
+	@NotBlank
 	private String pingCustomID;
 
 	/**
@@ -63,9 +63,9 @@ public class PingLogEntry {
 	 * @param pingCustomID Ping short string id
 	 * @throws java.lang.IllegalArgumentException if the pingBatchLogEntry or pingCustomID parameters are null or empty
 	 */
-	@NotNull
-	@StringsNotEmpty
-	public PingLogEntry(final PingBatchLogEntry pingBatchLogEntry, long pingMillis, final String pingCustomID) {
+	public PingLogEntry(final PingBatchLogEntry pingBatchLogEntry,
+			      long pingMillis,
+			      final String pingCustomID) {
 		this.pingBatchLogEntry = pingBatchLogEntry;
 		this.pingMillis = pingMillis;
 		this.pingCustomID = pingCustomID;

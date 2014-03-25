@@ -3,10 +3,10 @@ package ua.ll7.slot7.timing.model;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
-import ua.ll7.slot7.checks.notnull.annotation.NotNull;
-import ua.ll7.slot7.checks.stringsnotempty.annotation.StringsNotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,6 +42,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column
 	@Index(name = "pingBatchCustomID")
+	@NotBlank
 	private String pingBatchCustomID;
 
 	/**
@@ -49,6 +50,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column
 	@Index(name = "host")
+	@NotBlank
 	private String host;
 
 	/**
@@ -56,6 +58,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column
 	@Index(name = "thread")
+	@NotBlank
 	private String thread;
 
 	/**
@@ -63,6 +66,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
 	private Date date;
 
 	/**
@@ -89,9 +93,10 @@ public class PingBatchLogEntry {
 	 * @param date              Usually - moment of the batch creation
 	 * @throws java.lang.IllegalArgumentException if the pingCustomID parameter is null or empty
 	 */
-	@StringsNotEmpty
-	@NotNull
-	public PingBatchLogEntry(final String pingBatchCustomID, final Date date, final String host, final String thread) {
+	public PingBatchLogEntry(final String pingBatchCustomID,
+				    final Date date,
+				    final String host,
+				    final String thread) {
 		this();
 		this.setHost(host);
 		this.setThread(thread);
@@ -116,8 +121,7 @@ public class PingBatchLogEntry {
 	 * @param pingLogEntry Ping to add
 	 * @throws java.lang.IllegalArgumentException if the pingCustomID parameter is null or empty
 	 */
-	@NotNull
-	public void addPing(final PingLogEntry pingLogEntry) {
+	public void addPing(@NotNull final PingLogEntry pingLogEntry) {
 		this.pingLogEntries.add(pingLogEntry);
 	}
 
