@@ -91,7 +91,6 @@ public class PingBatchLogEntry {
 	 *
 	 * @param pingBatchCustomID Batch short string id
 	 * @param date              Usually - moment of the batch creation
-	 * @throws java.lang.IllegalArgumentException if the pingCustomID parameter is null or empty
 	 */
 	public PingBatchLogEntry(final String pingBatchCustomID,
 				    final Date date,
@@ -119,7 +118,6 @@ public class PingBatchLogEntry {
 	 * Adding ping into batch
 	 *
 	 * @param pingLogEntry Ping to add
-	 * @throws java.lang.IllegalArgumentException if the pingCustomID parameter is null or empty
 	 */
 	public void addPing(@NotNull final PingLogEntry pingLogEntry) {
 		this.pingLogEntries.add(pingLogEntry);

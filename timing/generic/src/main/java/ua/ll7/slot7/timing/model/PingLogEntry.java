@@ -61,7 +61,6 @@ public class PingLogEntry {
 	/**
 	 * @param pingMillis   Usually - {@link System#currentTimeMillis()} of the appropriate event ("ping")
 	 * @param pingCustomID Ping short string id
-	 * @throws java.lang.IllegalArgumentException if the pingBatchLogEntry or pingCustomID parameters are null or empty
 	 */
 	public PingLogEntry(final PingBatchLogEntry pingBatchLogEntry,
 			      long pingMillis,
