@@ -114,18 +114,6 @@
             <version>3.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>ua.its.slot7.checks</groupId>
-            <artifactId>stringsnotempty</artifactId>
-            <version>0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ua.its.slot7.checks</groupId>
-            <artifactId>notnull</artifactId>
-            <version>0.1</version>
-        </dependency>
-
     </dependencies>
 
 </project>
