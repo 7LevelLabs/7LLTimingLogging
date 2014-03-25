@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * @author Alex Velichko
  *         18.03.14 : 20:20
  */
-@Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StringsNotEmpty {
 
