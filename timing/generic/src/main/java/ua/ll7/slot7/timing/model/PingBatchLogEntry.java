@@ -1,9 +1,10 @@
 package ua.ll7.slot7.timing.model;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
+import ua.ll7.slot7.checks.notnull.annotation.NotNull;
+import ua.ll7.slot7.checks.stringsnotempty.annotation.StringsNotEmpty;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -44,6 +45,20 @@ public class PingBatchLogEntry {
 	private String pingBatchCustomID;
 
 	/**
+	 * Host
+	 */
+	@Column
+	@Index(name = "host")
+	private String host;
+
+	/**
+	 * Thread
+	 */
+	@Column
+	@Index(name = "thread")
+	private String thread;
+
+	/**
 	 * Date() for the batch
 	 */
 	@Column(nullable = false)
@@ -74,16 +89,14 @@ public class PingBatchLogEntry {
 	 * @param date              Usually - moment of the batch creation
 	 * @throws java.lang.IllegalArgumentException if the pingCustomID parameter is null or empty
 	 */
-	public PingBatchLogEntry(String pingBatchCustomID, Date date) {
+	@StringsNotEmpty
+	@NotNull
+	public PingBatchLogEntry(final String pingBatchCustomID, final Date date, final String host, final String thread) {
 		this();
-		if (StringUtils.isBlank(pingBatchCustomID)) {
-			throw new IllegalArgumentException("Batch customID must be not null or empty.");
-		}
-		if (date == null) {
-			throw new IllegalArgumentException("Batch date is null or empty.");
-		}
-		this.pingBatchCustomID = pingBatchCustomID;
-		this.date = date;
+		this.setHost(host);
+		this.setThread(thread);
+		this.setPingBatchCustomID(pingBatchCustomID);
+		this.setDate(date);
 	}
 
 	/**
@@ -103,10 +116,8 @@ public class PingBatchLogEntry {
 	 * @param pingLogEntry Ping to add
 	 * @throws java.lang.IllegalArgumentException if the pingCustomID parameter is null or empty
 	 */
-	public void addPing(PingLogEntry pingLogEntry) {
-		if (pingLogEntry == null) {
-			throw new IllegalArgumentException("Ping is null.");
-		}
+	@NotNull
+	public void addPing(final PingLogEntry pingLogEntry) {
 		this.pingLogEntries.add(pingLogEntry);
 	}
 
@@ -129,6 +140,8 @@ public class PingBatchLogEntry {
 		clonedBatch.setPingBatchCustomID(this.getPingBatchCustomID());
 		clonedBatch.setDate(this.getDate());
 		clonedBatch.setPingBatchComments(this.getPingBatchComments());
+		clonedBatch.setHost(this.getHost());
+		clonedBatch.setThread(this.getThread());
 
 		//collection
 		LinkedList<PingLogEntry> tmpList = new LinkedList<PingLogEntry>(this.pingLogEntries);
@@ -141,13 +154,31 @@ public class PingBatchLogEntry {
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("PingBatchLogEntry{");
 		sb.append("id=").append(id);
-		sb.append(", pingBatchCustomID='").append(pingBatchCustomID).append('\'');
 		sb.append(", pingBatchUUID='").append(pingBatchUUID).append('\'');
+		sb.append(", pingBatchCustomID='").append(pingBatchCustomID).append('\'');
+		sb.append(", host='").append(host).append('\'');
+		sb.append(", thread='").append(thread).append('\'');
 		sb.append(", date=").append(date);
-		sb.append(", pingLogEntries=").append(pingLogEntries.toString());
+		sb.append(", pingLogEntries=").append(pingLogEntries);
 		sb.append(", pingBatchComments='").append(pingBatchComments).append('\'');
 		sb.append('}');
 		return sb.toString();
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getThread() {
+		return thread;
+	}
+
+	public void setThread(String thread) {
+		this.thread = thread;
 	}
 
 	public long getId() {
