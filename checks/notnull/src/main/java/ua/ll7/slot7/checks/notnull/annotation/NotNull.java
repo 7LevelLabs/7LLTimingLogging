@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * @author Alex Velichko
  *         18.03.14 : 16:00
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotNull {
 
