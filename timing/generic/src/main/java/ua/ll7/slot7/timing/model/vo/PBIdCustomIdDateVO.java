@@ -6,6 +6,7 @@ import java.util.Date;
  * @author Oleksandr Velychko
  *         29.01.14 : 11:52
  */
+//TODO Amend with host / thread conception
 public class PBIdCustomIdDateVO {
 	private final long id;
 	private final String pingBatchCustomID;

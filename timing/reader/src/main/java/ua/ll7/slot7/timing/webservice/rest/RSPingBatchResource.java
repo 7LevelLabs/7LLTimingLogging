@@ -34,20 +34,42 @@ public class RSPingBatchResource implements IPingBatch {
 	@Autowired
 	private PingBatchLogEntryReaderService pingBatchLogEntryService;
 
+	//TODO Refactor to the request / response model
+
 	@GET
 	@Path("/getcustomids")
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Find all Ping Batch custom IDs", response = List.class)
 	@Override
-	public List<String> getCustomIDs() {
-		return pingBatchLogEntryService.getCustomIDs();
+	public Response getCustomIDs() {
+		List<String> resultList = null;
+		resultList = pingBatchLogEntryService.getCustomIDs();
+
+		if (resultList == null) {
+			return Response.status(Response.Status.NOT_FOUND).entity("Data not found").build();
+		}
+
+		return Response.status(200).entity(resultList).build();
 	}
 
 	@GET
 	@Path("/getidlist/{customid}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Find Ping Batch IDs by custom ID", response = Long.class)
 	@Override
-	public List<Long> getIDList(@PathParam("customid") String customIDToSearch) {
-		return pingBatchLogEntryService.getIDList(customIDToSearch);
+	public Response getIDList(@PathParam("customid") String customId) {
+		if (StringUtils.isBlank(customId)) {
+			return Response.serverError().entity("Ping Batch custom ID cannot be blank").build();
+		}
+
+		List<Long> resultList = null;
+		resultList = pingBatchLogEntryService.getIDList(customId);
+
+		if (resultList == null) {
+			return Response.status(Response.Status.NOT_FOUND).entity("Data not found ; custom ID : " + customId).build();
+		}
+
+		return Response.status(200).entity(resultList).build();
 	}
 
 	@GET
@@ -56,13 +78,11 @@ public class RSPingBatchResource implements IPingBatch {
 	@ApiOperation(value = "Find Ping Batch data by custom ID", response = PBIdCustomIdDateVO.class)
 	@Override
 	public Response getVOList(@PathParam("customid") String customId) {
-
 		if (StringUtils.isBlank(customId)) {
 			return Response.serverError().entity("Ping Batch custom ID cannot be blank").build();
 		}
 
 		List<PBIdCustomIdDateVO> resultList = null;
-
 		resultList = pingBatchLogEntryService.getVOList(customId);
 
 		if (resultList == null) {
@@ -78,13 +98,11 @@ public class RSPingBatchResource implements IPingBatch {
 	@ApiOperation(value = "Find Ping Batch by ID", response = PingBatchLogEntry.class)
 	@Override
 	public Response getByID(@PathParam("id") long id) {
-
 		if (id < 1) {
 			return Response.serverError().entity("Ping Batch ID cannot be 0 or minor").build();
 		}
 
 		PingBatchLogEntry pingBatchLogEntry = null;
-
 		pingBatchLogEntry = pingBatchLogEntryService.getByID(id);
 
 		if (pingBatchLogEntry == null) {
