@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import ua.ll7.slot7.timing.model.PingBatchLogEntry;
+import ua.ll7.slot7.timing.model.response.GetCustomIDsResponse;
 import ua.ll7.slot7.timing.model.vo.PBIdCustomIdDateVO;
 import ua.ll7.slot7.timing.service.impl.PingBatchLogEntryReaderService;
 
@@ -34,12 +35,10 @@ public class RSPingBatchResource implements IPingBatch {
 	@Autowired
 	private PingBatchLogEntryReaderService pingBatchLogEntryService;
 
-	//TODO Refactor to the request / response model
-
 	@GET
 	@Path("/getcustomids")
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "Find all Ping Batch custom IDs", response = List.class)
+	@ApiOperation(value = "Find all Ping Batch custom IDs", response = GetCustomIDsResponse.class)
 	@Override
 	public Response getCustomIDs() {
 		List<String> resultList = null;
@@ -49,8 +48,10 @@ public class RSPingBatchResource implements IPingBatch {
 			return Response.status(Response.Status.NOT_FOUND).entity("Data not found").build();
 		}
 
-		return Response.status(200).entity(resultList).build();
+		return Response.status(200).entity(new GetCustomIDsResponse(resultList)).build();
 	}
+
+	//TODO Refactor to the request / response model
 
 	@GET
 	@Path("/getidlist/{customid}")
