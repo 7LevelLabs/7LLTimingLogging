@@ -38,7 +38,7 @@ public class PingLogEntry {
 	 */
 	@Column
 	@Index(name = "pingCustomID")
-	@NotBlank
+	@NotBlank(message = "The Ping Custom ID must not be blank")
 	private String pingCustomID;
 
 	/**

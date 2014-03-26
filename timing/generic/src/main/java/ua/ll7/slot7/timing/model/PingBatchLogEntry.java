@@ -42,7 +42,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column
 	@Index(name = "pingBatchCustomID")
-	@NotBlank
+	@NotBlank(message = "The Custom ID must not be blank")
 	private String pingBatchCustomID;
 
 	/**
@@ -50,7 +50,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column
 	@Index(name = "host")
-	@NotBlank
+	@NotBlank(message = "The Host must not be blank")
 	private String host;
 
 	/**
@@ -58,7 +58,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column
 	@Index(name = "thread")
-	@NotBlank
+	@NotBlank(message = "The Thread must not be blank")
 	private String thread;
 
 	/**
@@ -66,7 +66,7 @@ public class PingBatchLogEntry {
 	 */
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotNull
+	@NotNull(message = "The Date must not be null")
 	private Date date;
 
 	/**
