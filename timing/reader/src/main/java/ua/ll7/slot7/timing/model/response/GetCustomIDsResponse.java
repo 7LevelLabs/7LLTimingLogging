@@ -7,7 +7,7 @@ import java.util.List;
  *         26.03.14 : 11:17
  */
 public class GetCustomIDsResponse {
-	List<String> data;
+	private List<String> data;
 
 	public GetCustomIDsResponse(List<String> data) {
 		this.data = data;
