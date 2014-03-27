@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import ua.ll7.slot7.timing.model.PingBatchLogEntry;
 import ua.ll7.slot7.timing.model.response.GetCustomIDsResponse;
+import ua.ll7.slot7.timing.model.response.GetIDListResponse;
+import ua.ll7.slot7.timing.model.response.GetVOListResponse;
 import ua.ll7.slot7.timing.model.vo.PBIdCustomIdDateVO;
 import ua.ll7.slot7.timing.service.impl.PingBatchLogEntryReaderService;
 
@@ -51,12 +53,10 @@ public class RSPingBatchResource implements IPingBatch {
 		return Response.status(200).entity(new GetCustomIDsResponse(resultList)).build();
 	}
 
-	//TODO Refactor to the request / response model
-
 	@GET
 	@Path("/getidlist/{customid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "Find Ping Batch IDs by custom ID", response = Long.class)
+	@ApiOperation(value = "Find Ping Batch IDs by custom ID", response = GetIDListResponse.class)
 	@Override
 	public Response getIDList(@PathParam("customid") String customId) {
 		if (StringUtils.isBlank(customId)) {
@@ -70,13 +70,13 @@ public class RSPingBatchResource implements IPingBatch {
 			return Response.status(Response.Status.NOT_FOUND).entity("Data not found ; custom ID : " + customId).build();
 		}
 
-		return Response.status(200).entity(resultList).build();
+		return Response.status(200).entity(new GetIDListResponse(resultList)).build();
 	}
 
 	@GET
 	@Path("/getvolist/{customid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "Find Ping Batch data by custom ID", response = PBIdCustomIdDateVO.class)
+	@ApiOperation(value = "Find Ping Batch data by custom ID", response = GetVOListResponse.class)
 	@Override
 	public Response getVOList(@PathParam("customid") String customId) {
 		if (StringUtils.isBlank(customId)) {
@@ -90,7 +90,7 @@ public class RSPingBatchResource implements IPingBatch {
 			return Response.status(Response.Status.NOT_FOUND).entity("Data not found ; custom ID : " + customId).build();
 		}
 
-		return Response.status(200).entity(resultList).build();
+		return Response.status(200).entity(new GetVOListResponse(resultList)).build();
 	}
 
 	@GET
