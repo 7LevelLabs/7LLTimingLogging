@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         28.12.13 : 12:19
  */
 public class PingBatchLogEntryTest extends Assert {

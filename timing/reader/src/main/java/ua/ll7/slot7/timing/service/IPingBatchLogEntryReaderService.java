@@ -6,7 +6,7 @@ import ua.ll7.slot7.timing.model.vo.PBIdCustomIdDateVO;
 import java.util.List;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 18:41
  */
 public interface IPingBatchLogEntryReaderService {

@@ -5,7 +5,7 @@ import ua.ll7.slot7.timing.model.PingLogEntry;
 /**
  * Ping-pong time calculator
  *
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 20:15
  */
 public class PingPongTime {

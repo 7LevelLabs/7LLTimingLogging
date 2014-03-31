@@ -23,7 +23,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         29.01.14 : 17:31
  */
 @Controller

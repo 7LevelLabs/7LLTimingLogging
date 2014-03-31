@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 18:45
  */
 @Service("pingBatchLogEntryService")

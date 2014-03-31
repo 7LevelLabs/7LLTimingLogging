@@ -14,7 +14,7 @@ import java.util.UUID;
  * - Collect pings ({@link #ping()}, {@link #ping(String)}, {@link #ping(String, String)})
  * - Upload batch ({@link #uploadBatch()})
  *
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         26.12.13 : 11:27
  */
 public class PingsCollector {

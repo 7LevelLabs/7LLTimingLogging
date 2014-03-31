@@ -14,7 +14,7 @@ import ua.ll7.slot7.timing.model.PingLogEntry;
 import java.util.Date;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         28.01.14 : 13:31
  */
 @RunWith(SpringJUnit4ClassRunner.class)

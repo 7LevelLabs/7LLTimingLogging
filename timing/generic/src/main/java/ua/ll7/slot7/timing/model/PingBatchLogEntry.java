@@ -15,7 +15,7 @@ import java.util.UUID;
 /**
  * Ping batch data
  *
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 17:45
  * @see ua.ll7.slot7.timing.model.PingLogEntry
  */

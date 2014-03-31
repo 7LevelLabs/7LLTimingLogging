@@ -3,7 +3,7 @@ package ua.ll7.slot7.timing.model.vo;
 import java.util.Date;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         29.01.14 : 11:52
  */
 //TODO Amend with host / thread conception

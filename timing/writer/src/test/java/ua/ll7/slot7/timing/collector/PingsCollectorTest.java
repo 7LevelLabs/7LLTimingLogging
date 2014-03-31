@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         28.12.13 : 13:00
  * @see ua.ll7.slot7.timing.model.PingLogEntry
  */

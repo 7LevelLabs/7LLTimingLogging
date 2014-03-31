@@ -10,7 +10,7 @@ import javax.persistence.*;
 /**
  * Timing system : ping log entry
  *
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 16:47
  * @see PingBatchLogEntry
  * @see System#currentTimeMillis()

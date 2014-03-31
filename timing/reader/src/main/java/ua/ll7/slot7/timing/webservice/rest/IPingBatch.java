@@ -1,7 +1,7 @@
 package ua.ll7.slot7.timing.webservice.rest;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         29.01.14 : 17:19
  */
 public interface IPingBatch {

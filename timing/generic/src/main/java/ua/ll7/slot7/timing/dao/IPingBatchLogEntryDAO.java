@@ -5,7 +5,7 @@ import ua.ll7.slot7.timing.model.PingBatchLogEntry;
 import java.util.List;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 18:24
  */
 public interface IPingBatchLogEntryDAO {
