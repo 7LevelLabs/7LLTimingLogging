@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         20.12.13 : 19:11
  */
 public class TimingTmpApp {

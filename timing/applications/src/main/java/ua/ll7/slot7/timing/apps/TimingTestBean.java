@@ -12,7 +12,7 @@ import ua.ll7.slot7.timing.service.IPingBatchLogEntryWriterService;
 import java.util.ArrayList;
 
 /**
- * @author Oleksandr Velychko
+ * @author Alex Velichko
  *         24.12.13 : 16:56
  */
 @Component
