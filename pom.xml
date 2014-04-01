@@ -44,6 +44,14 @@
                 <skip.unit.tests>true</skip.unit.tests>
             </properties>
         </profile>
+        <profile>
+            <id>full</id>
+            <properties>
+                <skip.unit.tests>false</skip.unit.tests>
+                <skip.integration.tests>false</skip.integration.tests>
+            </properties>
+        </profile>
+
     </profiles>
 
     <build>
