@@ -90,9 +90,8 @@ public class PingBatchLogEntryTest extends Assert {
 
 		org.assertj.core.api.Assertions
 			.assertThat(constraintViolations)
-			.hasSize(3);
+			.hasSize(2);
 	}
-
 
 	@Test
 	public void testAddPing() throws Exception {
