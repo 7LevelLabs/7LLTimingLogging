@@ -62,7 +62,7 @@ public class PingBatchLogEntryTest extends Assert {
 	}
 
 	@Test
-	public void testValidation() throws Exception {
+	public void testValidation1() throws Exception {
 		PingBatchLogEntry pingBatchLogEntry = new PingBatchLogEntry(
 			null,
 			new Date(),
@@ -76,6 +76,23 @@ public class PingBatchLogEntryTest extends Assert {
 			.assertThat(constraintViolations)
 			.hasSize(3);
 	}
+
+	@Test
+	public void testValidation2() throws Exception {
+		PingBatchLogEntry pingBatchLogEntry = new PingBatchLogEntry(
+			null,
+			new Date(),
+			"Host1",
+			"");
+
+		Set<ConstraintViolation<PingBatchLogEntry>> constraintViolations =
+			validator.validate(pingBatchLogEntry);
+
+		org.assertj.core.api.Assertions
+			.assertThat(constraintViolations)
+			.hasSize(3);
+	}
+
 
 	@Test
 	public void testAddPing() throws Exception {
