@@ -27,6 +27,9 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <skip.integration.tests>true</skip.integration.tests>
+        <skip.unit.tests>false</skip.unit.tests>
+
     </properties>
 
     <build>

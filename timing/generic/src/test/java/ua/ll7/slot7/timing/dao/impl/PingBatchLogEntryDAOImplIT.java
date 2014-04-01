@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:genericAContext.xml")
-public class PingBatchLogEntryDAOImplTest extends Assert {
+public class PingBatchLogEntryDAOImplIT extends Assert {
 
 	private PingLogEntry ping11 = null;
 	private PingLogEntry ping12 = null;
@@ -52,6 +52,8 @@ public class PingBatchLogEntryDAOImplTest extends Assert {
 		//batch 1
 
 		batchLogEntry1 = new PingBatchLogEntry();
+		batchLogEntry1.setHost("host1");
+		batchLogEntry1.setThread("thread1");
 		batchLogEntry1.setPingBatchComments("batchLogEntry1 Comments");
 		batchLogEntry1.setPingBatchCustomID("batchLogEntry1 Custom ID");
 		batchLogEntry1.setDate(new Date(moment1));
@@ -67,6 +69,8 @@ public class PingBatchLogEntryDAOImplTest extends Assert {
 		//batch 2
 
 		batchLogEntry2 = new PingBatchLogEntry();
+		batchLogEntry2.setHost("host2");
+		batchLogEntry2.setThread("thread2");
 		batchLogEntry2.setPingBatchComments("batchLogEntry2 Comments");
 		batchLogEntry2.setPingBatchCustomID("batchLogEntry2 Custom ID");
 		batchLogEntry2.setDate(new Date(moment2));
