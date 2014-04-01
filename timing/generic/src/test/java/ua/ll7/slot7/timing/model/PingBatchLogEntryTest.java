@@ -115,10 +115,4 @@ public class PingBatchLogEntryTest extends Assert {
 		assertTrue(
 			pingBatchCloned.getPingLogEntries() != pingBatch.getPingLogEntries());
 	}
-
-	@Test
-	public void testToString() throws Exception {
-		String tmpToString = "PingBatchLogEntry{id=0, pingBatchUUID='9d12589b-037c-47ce-9fb9-6dfcfbd49ea0', pingBatchCustomID='Batch Custom ID Content', host='host1', thread='thread1', date=Sat Dec 28 12:47:00 EET 2013, pingLogEntries=[PingLogEntry{id=0, pingCustomID='Ping 1', pingMillis=1388227621663, pingComments='null'}, PingLogEntry{id=0, pingCustomID='Ping 2', pingMillis=1388227622164, pingComments='null'}, PingLogEntry{id=0, pingCustomID='Ping 3', pingMillis=1388227622414, pingComments='null'}], pingBatchComments='Batch Comments Content'}";
-		assertEquals(tmpToString, pingBatch.toString());
-	}
 }
