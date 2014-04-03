@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 import ua.ll7.slot7.timing.dao.IPingBatchLogEntryDAO;
 import ua.ll7.slot7.timing.model.PingBatchLogEntry;
 import ua.ll7.slot7.timing.model.PingLogEntry;
@@ -19,6 +21,8 @@ import java.util.Date;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:genericAContext.xml")
+@Transactional
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class PingBatchLogEntryDAOImplIT extends Assert {
 
 	private PingLogEntry ping11 = null;
